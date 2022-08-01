@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/sleep3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/sleep3.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"isleep.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":"search by changing input.","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="财务报销管理系统公司日常费用的财务报销管理，对于每个公司而言，是非常重要的管理节点。如何设计合理的数据结构、数据处理流程提升财务报销效率，是一个非常值得探索的问题。针对日常报销需求，开发一个简易的财务报销管理系统。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构课设-财务报销管理系统">
+<meta property="og:url" content="http://isleep.top/2022/08/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E8%AE%BE/index.html">
+<meta property="og:site_name" content="isleep&#39;s Blog">
+<meta property="og:description" content="财务报销管理系统公司日常费用的财务报销管理，对于每个公司而言，是非常重要的管理节点。如何设计合理的数据结构、数据处理流程提升财务报销效率，是一个非常值得探索的问题。针对日常报销需求，开发一个简易的财务报销管理系统。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/WSSSJ/AppData/Roaming/Typora/typora-user-images/image-20220314172327587.png">
+<meta property="og:image" content="c:/Users/WSSSJ/AppData/Roaming/Typora/typora-user-images/image-20220314172515739.png">
+<meta property="og:image" content="c:/Users/WSSSJ/AppData/Roaming/Typora/typora-user-images/image-20220314172616457.png">
+<meta property="og:image" content="c:/Users/WSSSJ/AppData/Roaming/Typora/typora-user-images/image-20220314172638927.png">
+<meta property="og:image" content="c:/Users/WSSSJ/AppData/Roaming/Typora/typora-user-images/image-20220314174740453.png">
+<meta property="og:image" content="c:/Users/WSSSJ/AppData/Roaming/Typora/typora-user-images/image-20220314174754443.png">
+<meta property="article:published_time" content="2022-08-01T13:21:15.000Z">
+<meta property="article:modified_time" content="2022-08-01T13:27:11.861Z">
+<meta property="article:author" content="五十九">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/WSSSJ/AppData/Roaming/Typora/typora-user-images/image-20220314172327587.png">
+
+<link rel="canonical" href="http://isleep.top/2022/08/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E8%AE%BE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数据结构课设-财务报销管理系统 | isleep's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">isleep's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">拖延症必须死嗷</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/isleep-59" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://isleep.top/2022/08/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E8%AE%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.png">
+      <meta itemprop="name" content="五十九">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="isleep's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据结构课设-财务报销管理系统
+        </h1>
+
+        <div class="post-meta">
+		
+		
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-08-01 21:21:15 / 修改时间：21:27:11" itemprop="dateCreated datePublished" datetime="2022-08-01T21:21:15+08:00">2022-08-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E8%AE%BE/" itemprop="url" rel="index"><span itemprop="name">课设</span></a>
+                </span>
+            </span>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.2k</span>
+            </span>
+
+          
+            <span id="/2022/08/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E8%AE%BE/" class="post-meta-item leancloud_visitors" data-flag-title="数据结构课设-财务报销管理系统" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/08/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E8%AE%BE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E8%AE%BE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+		
+		
+		<!--
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+		-->
+		
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="财务报销管理系统"><a href="#财务报销管理系统" class="headerlink" title="财务报销管理系统"></a>财务报销管理系统</h1><p>公司日常费用的财务报销管理，对于每个公司而言，是非常重要的管理节点。如何设计合理的数据结构、数据处理流程提升财务报销效率，是一个非常值得探索的问题。针对日常报销需求，开发一个简易的财务报销管理系统。</p>
+<span id="more"></span>
+
+<h2 id="1-数据格式"><a href="#1-数据格式" class="headerlink" title="1. 数据格式"></a>1. 数据格式</h2><p>采用多文件存储数据，文件内容与标题对应：</p>
+<ol>
+<li><p>文件一（申请人信息）：	</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//employee.txt</span><br><span class="line">工号            姓名          手机号              </span><br><span class="line">005            张三           13900700700         </span><br><span class="line">006            李四           13900800800     </span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>文件二（处理人信息）：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//manager.txt</span><br><span class="line">工号          姓名          手机号              职位                </span><br><span class="line">001           王五          13300100100         部门副主管          </span><br><span class="line">002           赵一          13900200200         财务副主管          </span><br><span class="line">003           孙六          13800400100         部门主管            </span><br><span class="line">004           钱七          13900300200         财务主管            </span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>文件三（额度限制信息）：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//quota.txt</span><br><span class="line">工号            职位                最大额度            </span><br><span class="line">001            部门副主管          50000               </span><br><span class="line">002            财务副主管          50000               </span><br><span class="line">003            部门主管            100000              </span><br><span class="line">004            财务主管            100000              </span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>文件四（流程日志信息）：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//log.txt</span><br><span class="line">报销单编号      提单人      提单金额      提单日期         状态        处理人</span><br><span class="line">20220006       007        100000       20220313       创建</span><br><span class="line">20220007       007        100000       20220313       审批未通过    003</span><br><span class="line">20220008       007        100000       20220313       创建</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="2-数据结构（读文件创建哈希表与队列）"><a href="#2-数据结构（读文件创建哈希表与队列）" class="headerlink" title="2. 数据结构（读文件创建哈希表与队列）"></a>2. 数据结构（读文件创建哈希表与队列）</h2><p>将文件中的数据读入内存，采用方法为<code>freopen()</code>函数，对程序的io流进行重定向，定向至文件路径所指处读取数据；</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//例：EmployeeMap的数据输入</span></span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;employee.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, stdin);</span><br><span class="line"><span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="built_in">sizeof</span>(vis));</span><br><span class="line">string number, name, phone;	</span><br><span class="line">cin &gt;&gt; number_title &gt;&gt; name_title &gt;&gt; phone_title;</span><br><span class="line"><span class="keyword">while</span> (cin &gt;&gt; number &gt;&gt; name &gt;&gt; phone) &#123;</span><br><span class="line">    <span class="function">Employee <span class="title">tmp</span><span class="params">(number, name, phone)</span></span>;</span><br><span class="line">    <span class="built_in">add</span>(tmp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">freopen</span>(<span class="string">&quot;CON&quot;</span>, <span class="string">&quot;r&quot;</span>, stdin);</span><br><span class="line">cin.<span class="built_in">clear</span>();</span><br></pre></td></tr></table></figure>
+
+<p>之后建立以字符串工号为键值的哈希表<code>EmployeeMap</code>，<code>ManagerMap</code>，<code>QuotaMap</code>，然后建立申请人报销循环队列<code>LogQueue</code>以及<code>LogSave</code>，其内部数据成员如下：</p>
+<ol>
+<li><p>Employee类与EmployeeMap类：</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	string number, name, phone;</span><br><span class="line">    <span class="comment">//number为工号，name为姓名，phone为手机号</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">EmployeeMap</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">bool</span> vis[MAX_SIZE];			<span class="comment">//记录工号是否存在</span></span><br><span class="line">	Employee mp[MAX_SIZE];		<span class="comment">//哈希表</span></span><br><span class="line">	string number_title, name_title, phone_title;	<span class="comment">//用来保存文件输出的表头</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>Manager类与ManagerMap类：</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Manager</span> : <span class="keyword">public</span> Employee &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	string job;</span><br><span class="line">    <span class="comment">//继承Employee类中数据成员，job为职位</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ManagerMap</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">bool</span> vis[MAX_SIZE];			<span class="comment">//记录工号是否存在</span></span><br><span class="line">	Manager mp[MAX_SIZE];		<span class="comment">//哈希表</span></span><br><span class="line">	string number_title, name_title, phone_title, job_title;	<span class="comment">//用来保存文件输出的表头</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>Quota类与QuotaMap类；</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Quota</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	string number, job;	<span class="comment">//number为工号，job为职位</span></span><br><span class="line">	<span class="type">int</span> limits;	<span class="comment">//limits为额度限制</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QuotaMap</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="type">bool</span> vis[MAX_SIZE];		<span class="comment">//记录工号是否存在</span></span><br><span class="line">	Quota mp[MAX_SIZE];		<span class="comment">//哈希表</span></span><br><span class="line">	string number_title, job_title, limits_title;	<span class="comment">//用来保存文件输出的表头</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>Log类、LogQueue类与LogSave类；</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Log</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	SYSTEMTIME date;	<span class="comment">//使用Window.h头文件中的SYSTEMTIME变量，可以获取当前系统时间</span></span><br><span class="line">	string employee, manager, status;	<span class="comment">//employee为申请人工号，manager为处理人工号，status为当前处理状态</span></span><br><span class="line">	<span class="type">int</span> money;	<span class="comment">//money为申请报销金额</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LogQueue</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	Log* q;		<span class="comment">//Log类指针作为队列的数组名</span></span><br><span class="line">	<span class="type">int</span> head, rear;	<span class="comment">//head为队首，rear为队尾</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Log.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//该类用于保存审批流程至日志中，便于最后的打印展示</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">LogSave</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	Log* q;		<span class="comment">//Log类指针作为队列的数组名</span></span><br><span class="line">	<span class="type">int</span> head, rear, index;		<span class="comment">//head为队首，rear为队尾，index为</span></span><br><span class="line">	string index_title, employee_title, money_title, date_title, status_title, manager_title;	<span class="comment">//保存数据表头</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="3-编辑文件信息"><a href="#3-编辑文件信息" class="headerlink" title="3. 编辑文件信息"></a>3. 编辑文件信息</h2><p>实现文件的增删改查，设计思路与代码如下：</p>
+<ol>
+<li><p>哈希函数：使用<code>&lt;string&gt;</code>头文件中的<code>stoi</code>函数作为哈希函数，功能为将字符串转化为其对应的整型数据，由于工号为一一对应的分配，即独一无二的，所以哈希冲突非常低；</p>
+</li>
+<li><p>信息增加：先将字符串哈希为整数类型，<strong>然后在<code>vis</code>数组中查看该工号是否已经出现过（数据关联性）</strong>，若出现过则返回<code>false</code>且不存入哈希表中，反之保存；</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//增加信息</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">add</span><span class="params">(xxx tmp)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> idx = <span class="built_in">stoi</span>(tmp.<span class="built_in">getNumber</span>());</span><br><span class="line">	<span class="keyword">if</span> (!vis[idx])</span><br><span class="line">		vis[idx] = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	mp[idx] = tmp;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>信息删除：与信息增加相反，如果<code>vis</code>中不存在，则返回<code>false</code>，反之删除；</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以工号为索引删除信息</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">del</span><span class="params">(string number)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> idx = <span class="built_in">stoi</span>(number);</span><br><span class="line">	<span class="keyword">if</span> (vis[idx])</span><br><span class="line">		vis[idx] = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>信息更改：先将要更改的数据从哈希表中删除，然后将更改后的数据添加进表中即可；</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以工号为索引更改信息</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">modify</span><span class="params">(string number, Manager tmp)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!<span class="built_in">del</span>(number))</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="built_in">add</span>(tmp);</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>信息查询：哈希后直接返回表中键值对应的数据；</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以工号为索引查询信息</span></span><br><span class="line"><span class="function">xxx <span class="title">query</span><span class="params">(<span class="type">int</span> idx)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> mp[idx];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>信息更新：在程序运行结束后，将内存中修改过的数据信息重新写入文件中，同样采用了<code>freopen()</code>函数，将输出流定向至文件所在位置：</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;employee.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line">    employee_map.<span class="built_in">display</span>();</span><br><span class="line">    cout.<span class="built_in">clear</span>();</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;manager.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line">    manager_map.<span class="built_in">display</span>();</span><br><span class="line">    cout.<span class="built_in">clear</span>();</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;quota.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line">    quota_map.<span class="built_in">display</span>();</span><br><span class="line">    cout.<span class="built_in">clear</span>();</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;log.txt&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line">    log_save.<span class="built_in">display</span>();</span><br><span class="line">    cout.<span class="built_in">clear</span>();</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;CON&quot;</span>, <span class="string">&quot;w&quot;</span>, stdout);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>*<strong>数据关联性</strong>：</p>
+<ol>
+<li>当录入的信息中出现非期望的重复时，程序将提示错误然后返回上层菜单，并不将该次输入存入内存中；</li>
+<li>ManagerMap类与QuotaMap类中存在信息关联，所以不得直接单项更改或删除上述两类的数据，即ManagerMap类的删改同时要配合QuotaMap类的删改；</li>
+</ol>
+<h2 id="4-处理报销信息"><a href="#4-处理报销信息" class="headerlink" title="4. 处理报销信息"></a>4. 处理报销信息</h2><h3 id="4-1-在用户交互界面中："><a href="#4-1-在用户交互界面中：" class="headerlink" title="4.1 在用户交互界面中："></a>4.1 在用户交互界面中：</h3><p>首先在菜单中选择<code>7.报销申请</code>，按下回车后即可进入数据录入阶段：</p>
+<p><img src="C:\Users\WSSSJ\AppData\Roaming\Typora\typora-user-images\image-20220314172327587.png" alt="image-20220314172327587"></p>
+<p>在数据录入阶段，需要输入报销申请人的工号以及期望报销的金额：</p>
+<p><img src="C:\Users\WSSSJ\AppData\Roaming\Typora\typora-user-images\image-20220314172515739.png" alt="image-20220314172515739"></p>
+<p>如果申请人工号并不存在，则会显示申请失败并返回上层菜单：</p>
+<p><img src="C:\Users\WSSSJ\AppData\Roaming\Typora\typora-user-images\image-20220314172616457.png" alt="image-20220314172616457"></p>
+<p>反之申请成功：</p>
+<p><img src="C:\Users\WSSSJ\AppData\Roaming\Typora\typora-user-images\image-20220314172638927.png" alt="image-20220314172638927"></p>
+<h3 id="4-2-在程序后台运行中："><a href="#4-2-在程序后台运行中：" class="headerlink" title="4.2 在程序后台运行中："></a>4.2 在程序后台运行中：</h3><p>对报销申请处理的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">string number;</span><br><span class="line"><span class="type">int</span> money;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;请输入申请人的工号：&quot;</span>; cin &gt;&gt; number;</span><br><span class="line"><span class="type">int</span> idx = <span class="built_in">stoi</span>(number);</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;请输入报销金额：&quot;</span>; cin &gt;&gt; money;</span><br><span class="line"><span class="function">Log <span class="title">tmp</span><span class="params">(number, money)</span></span>;</span><br><span class="line">log_queue.<span class="built_in">push</span>(tmp);</span><br><span class="line"><span class="built_in">process</span>();</span><br><span class="line"><span class="built_in">tips</span>();</span><br><span class="line"><span class="keyword">if</span> (employee_map.<span class="built_in">check</span>(idx))</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;报销申请成功！&quot;</span> &lt;&lt; endl;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;报销申请失败，该工号不存在！&quot;</span> &lt;&lt; endl;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">fin</span>())</span><br><span class="line">	<span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
+
+<p>当程序收到了来自前端的数据输入之后，会将其压入队列<code>log_queue</code>中，并调用<code>process</code>函数进行处理：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//小trick，获取一个随机状态，状态根据生成数字的奇偶而定</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">getRandom</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">srand</span>((<span class="type">int</span>)<span class="built_in">time</span>(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="type">int</span> i = <span class="built_in">rand</span>() % <span class="number">100</span> + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> i % <span class="number">2</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">process</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//当队列不为空时</span></span><br><span class="line">    <span class="keyword">while</span> (!log_queue.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="comment">//取出队首将其压入log_save中作为日志内容，并进行下一步操作</span></span><br><span class="line">        Log tmp = log_queue.<span class="built_in">front</span>();</span><br><span class="line">        log_queue.<span class="built_in">pop</span>();</span><br><span class="line">        log_save.<span class="built_in">push</span>(tmp);</span><br><span class="line">        <span class="comment">//如果当前状态是“创建”，则将移交给“部门主/副主管”进行审批</span></span><br><span class="line">        <span class="keyword">if</span> (tmp.<span class="built_in">getStatus</span>() == <span class="string">&quot;创建&quot;</span>) &#123;</span><br><span class="line">            <span class="comment">//在哈希表中线性查找，复杂度O(n)</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MAX_SIZE; ++i) &#123;</span><br><span class="line">                <span class="keyword">if</span> (quota_map.<span class="built_in">check</span>(i)) &#123;</span><br><span class="line">                    Quota quota = quota_map.<span class="built_in">query</span>(i);</span><br><span class="line">                    <span class="comment">//根据申报数额决定分配给主管或者副主管</span></span><br><span class="line">                    <span class="keyword">if</span> (quota.<span class="built_in">getLimits</span>() &gt;= tmp.<span class="built_in">getMoney</span>() &amp;&amp; (quota.<span class="built_in">getJob</span>() == <span class="string">&quot;部门主管&quot;</span> || quota.<span class="built_in">getJob</span>() == <span class="string">&quot;部门副主管&quot;</span>)) &#123;</span><br><span class="line">                        <span class="comment">//如果审批通过</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">getRandom</span>()) &#123;</span><br><span class="line">                            <span class="comment">//将其当前状态更改</span></span><br><span class="line">                            tmp.<span class="built_in">changeStatus</span>(<span class="string">&quot;部门审批&quot;</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span> &#123;</span><br><span class="line">                            tmp.<span class="built_in">changeStatus</span>(<span class="string">&quot;审批未通过&quot;</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="comment">//将其处理人的信息更新为刚才审批人的信息</span></span><br><span class="line">                        tmp.<span class="built_in">changeManager</span>(quota.<span class="built_in">getNumber</span>());</span><br><span class="line">                        <span class="comment">//再次压入队中</span></span><br><span class="line">                        log_queue.<span class="built_in">push</span>(tmp);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//以下步骤与上相同</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (tmp.<span class="built_in">getStatus</span>() == <span class="string">&quot;部门审批&quot;</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MAX_SIZE; ++i) &#123;</span><br><span class="line">                <span class="keyword">if</span> (quota_map.<span class="built_in">check</span>(i)) &#123;</span><br><span class="line">                    Quota quota = quota_map.<span class="built_in">query</span>(i);</span><br><span class="line">                    <span class="keyword">if</span> (quota.<span class="built_in">getLimits</span>() &gt;= tmp.<span class="built_in">getMoney</span>() &amp;&amp; (quota.<span class="built_in">getJob</span>() == <span class="string">&quot;财务主管&quot;</span> || quota.<span class="built_in">getJob</span>() == <span class="string">&quot;财务副主管&quot;</span>)) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (<span class="built_in">getRandom</span>()) &#123;</span><br><span class="line">                            tmp.<span class="built_in">changeStatus</span>(<span class="string">&quot;财务审批&quot;</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span> &#123;</span><br><span class="line">                            tmp.<span class="built_in">changeStatus</span>(<span class="string">&quot;审批未通过&quot;</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                        tmp.<span class="built_in">changeManager</span>(quota.<span class="built_in">getNumber</span>());</span><br><span class="line">                        log_queue.<span class="built_in">push</span>(tmp);</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (tmp.<span class="built_in">getStatus</span>() == <span class="string">&quot;财务审批&quot;</span>) &#123;</span><br><span class="line">            tmp.<span class="built_in">changeStatus</span>(<span class="string">&quot;付款&quot;</span>);</span><br><span class="line">            log_queue.<span class="built_in">push</span>(tmp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="5-查看报销审批日志"><a href="#5-查看报销审批日志" class="headerlink" title="5. 查看报销审批日志"></a>5. 查看报销审批日志</h2><h3 id="5-1-在用户交互界面中："><a href="#5-1-在用户交互界面中：" class="headerlink" title="5.1 在用户交互界面中："></a>5.1 在用户交互界面中：</h3><p>在菜单中选择<code>6.日志展示</code>，即可打印出日志内容：</p>
+<p><img src="C:\Users\WSSSJ\AppData\Roaming\Typora\typora-user-images\image-20220314174740453.png" alt="image-20220314174740453"></p>
+<p><img src="C:\Users\WSSSJ\AppData\Roaming\Typora\typora-user-images\image-20220314174754443.png" alt="image-20220314174754443"></p>
+<h3 id="5-2-在程序后台运行中："><a href="#5-2-在程序后台运行中：" class="headerlink" title="5.2 在程序后台运行中："></a>5.2 在程序后台运行中：</h3><p>直接调用<code>log_save</code>中的成员函数<code>display()</code>打印出日志：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">system</span>(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line"><span class="built_in">tips</span>();</span><br><span class="line">log_save.<span class="built_in">display</span>();</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">fin</span>())</span><br><span class="line">    <span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="6-设计总结"><a href="#6-设计总结" class="headerlink" title="6. 设计总结"></a>6. 设计总结</h2><ol>
+<li><p>在这次程序设计中，花费时间最久的部分为用户交互界面，即菜单的设计，我采用了<code>&lt;conio.h&gt; </code>头文件中的<code>_getch()</code>函数达到监控键盘的效果，在程序运行时，实时读取方向键上下的状态，并且同步刷新控制台界面，实现了动态的菜单效果，同时，程序在面对异常操作（乱按键盘）时，不会给予反应；</p>
+</li>
+<li><p>其次，在菜单的多级设计方面，我采用了函数递归回溯的方式，解决了从二级菜单返回一级菜单的问题；</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">read</span><span class="params">(<span class="type">int</span> line)</span> </span>&#123;</span><br><span class="line">    <span class="type">char</span> c1, c2;</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        <span class="built_in">display</span>(line);</span><br><span class="line"></span><br><span class="line">        c1 = _getch();</span><br><span class="line">        <span class="keyword">if</span> (c1 == <span class="string">&#x27;\r&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (line == <span class="number">8</span>) &#123;</span><br><span class="line">                <span class="built_in">tips</span>();</span><br><span class="line">                cout &lt;&lt; <span class="string">&quot;系统已退出！&quot;</span> &lt;&lt; endl;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (menu_status == <span class="number">1</span>) &#123;</span><br><span class="line">                operation_status = line;</span><br><span class="line">                <span class="keyword">if</span> (line &gt; <span class="number">0</span> &amp;&amp; line &lt; <span class="number">6</span>) &#123;</span><br><span class="line">                    menu_status = <span class="number">2</span>;</span><br><span class="line">                    <span class="comment">//递归回溯</span></span><br><span class="line">                    <span class="built_in">read</span>(<span class="number">1</span>);</span><br><span class="line">                    menu_status = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="built_in">operation</span>();</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                object_status = line;</span><br><span class="line">                <span class="built_in">operation</span>();</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        c2 = _getch();</span><br><span class="line">        <span class="keyword">switch</span> (c2) &#123;</span><br><span class="line">        <span class="keyword">case</span> UP: line--; <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> DOWN: line++; <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>: <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (menu_status == <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (line &gt; <span class="number">8</span>)</span><br><span class="line">                line = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (line &lt; <span class="number">1</span>)</span><br><span class="line">                line = <span class="number">8</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (menu_status == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (line &gt; <span class="number">4</span>)</span><br><span class="line">                line = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (line &lt; <span class="number">1</span>)</span><br><span class="line">                line = <span class="number">4</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">display</span><span class="params">(<span class="type">int</span> line)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(menu_status == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">9</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i != line)</span><br><span class="line">                cout &lt;&lt; spc &lt;&lt; first[i] &lt;&lt; spc &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                cout &lt;&lt; arw_r &lt;&lt; first[i] &lt;&lt; arw_l &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(menu_status == <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i != line)</span><br><span class="line">                cout &lt;&lt; spc &lt;&lt; second[i] &lt;&lt; spc &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                cout &lt;&lt; arw_r &lt;&lt; second[i] &lt;&lt; arw_l &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在数据结构设计方面，本来打算使用STL库中的容器<code>map</code>来作为表来使用，发现其红黑树的功能有些多余，于是决定手写一个简易哈希表；</p>
+</li>
+<li><p>有意思的两个函数：<code>tips()</code>，<code>fin()</code>：</p>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在程序中显示“处理中...”的字样，让用户感知到操作生效的反馈</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">tips</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; ++i) &#123;</span><br><span class="line">        <span class="built_in">system</span>(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;处理中&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; i; ++j) &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt; endl;</span><br><span class="line">        <span class="built_in">Sleep</span>(<span class="number">200</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;cls&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//监视键盘，仅当读取到回车键时做出反应，可以让用户在结束一次操作之后有反应的时间，自己来决定何时返回上层菜单</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">fin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;按回车键返回上层菜单！&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">    <span class="keyword">while</span> (c = _getch()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (c == <span class="string">&#x27;\r&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>程序的不足之处自然也是存在的，比如在处理人员报销信息时，采用的QuotaMap上的线性查找效率并不是很高，后期本来想采用二分查找，但是发现需要更改前面设计的数据结构，遂放弃，仍然采用线性查找算法；</p>
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+	
+	<div>
+	  
+		<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------------------------END------------------------</div>
+    
+</div>
+
+	  
+	</div>
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"><i class="fa fa-tag"></i> 数据结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/01/%E6%B1%82N%E7%9A%84%E9%98%B6%E4%B9%98/" rel="prev" title="求N的阶乘">
+      <i class="fa fa-chevron-left"></i> 求N的阶乘
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%A2%E5%8A%A1%E6%8A%A5%E9%94%80%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text">财务报销管理系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">1. 数据格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E8%AF%BB%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8E%E9%98%9F%E5%88%97%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2. 数据结构（读文件创建哈希表与队列）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6%E4%BF%A1%E6%81%AF"><span class="nav-number">1.3.</span> <span class="nav-text">3. 编辑文件信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%A4%84%E7%90%86%E6%8A%A5%E9%94%80%E4%BF%A1%E6%81%AF"><span class="nav-number">1.4.</span> <span class="nav-text">4. 处理报销信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E5%9C%A8%E7%94%A8%E6%88%B7%E4%BA%A4%E4%BA%92%E7%95%8C%E9%9D%A2%E4%B8%AD%EF%BC%9A"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 在用户交互界面中：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%9C%A8%E7%A8%8B%E5%BA%8F%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E4%B8%AD%EF%BC%9A"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 在程序后台运行中：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%9F%A5%E7%9C%8B%E6%8A%A5%E9%94%80%E5%AE%A1%E6%89%B9%E6%97%A5%E5%BF%97"><span class="nav-number">1.5.</span> <span class="nav-text">5. 查看报销审批日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E5%9C%A8%E7%94%A8%E6%88%B7%E4%BA%A4%E4%BA%92%E7%95%8C%E9%9D%A2%E4%B8%AD%EF%BC%9A"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 在用户交互界面中：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E5%9C%A8%E7%A8%8B%E5%BA%8F%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E4%B8%AD%EF%BC%9A"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 在程序后台运行中：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E8%AE%BE%E8%AE%A1%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">6. 设计总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="五十九"
+      src="/images/head.png">
+  <p class="site-author-name" itemprop="name">五十九</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/isleep-59" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;isleep-59" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:goodwsj@qq.com" title="E-Mail → mailto:goodwsj@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+    <!-- <span class="post-meta-divider">|</span> -->
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">14k</span>
+<!--
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">13 分钟</span>
+-->
+
+<br>
+
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">五十九</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'Di1CCDNRhTvbF02nhmTe69w5-gzGzoHsz',
+      appKey     : 'bSsvnyKteEG6a2pw1IT2nihm',
+      placeholder: "LEAVE YOUR COMMENTS HERE !!!",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
