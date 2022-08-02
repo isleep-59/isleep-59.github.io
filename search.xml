@@ -9,6 +9,22 @@
 ]]></content>
   </entry>
   <entry>
+    <title>右键新建Markdown文件</title>
+    <url>/2022/08/02/%E5%8F%B3%E9%94%AE%E6%96%B0%E5%BB%BAMarkdown%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="右键新建MarkDown文件"><a href="#右键新建MarkDown文件" class="headerlink" title="右键新建MarkDown文件"></a>右键新建MarkDown文件</h1><p>有时候需要在当前目录下随手建一个.md文件，如果每次都打开Typora新建保存，在找路径上就要花一些时间，如果能像新建.txt文件，右键新建.md文件将非常方便。</p>
+<p>新建一个.reg文件然后复制粘贴下面的代码，保存并运行后就能实现上述功能。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line">[HKEY_CLASSES_ROOT\.md]</span><br><span class="line">@=&quot;Typora.exe&quot;</span><br><span class="line">[HKEY_CLASSES_ROOT\.md\ShellNew]</span><br><span class="line">&quot;NullFile&quot;=&quot;&quot;</span><br><span class="line">[HKEY_CLASSES_ROOT\Typora.exe]</span><br><span class="line">@=&quot;Markdown&quot;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>QuickNote</tag>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>右键使用VSCode打开</title>
     <url>/2022/08/02/%E5%8F%B3%E9%94%AEVSCode%E6%89%93%E5%BC%80/</url>
     <content><![CDATA[<h1 id="右键菜单添加Open-With-Code"><a href="#右键菜单添加Open-With-Code" class="headerlink" title="右键菜单添加Open With Code"></a>右键菜单添加Open With Code</h1><p>写一个.reg文件然后双击，其中VSCode的路径换成自己的。</p>
