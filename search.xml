@@ -9,6 +9,21 @@
 ]]></content>
   </entry>
   <entry>
+    <title>右键使用VSCode打开</title>
+    <url>/2022/08/02/%E5%8F%B3%E9%94%AEVSCode%E6%89%93%E5%BC%80/</url>
+    <content><![CDATA[<h1 id="右键菜单添加Open-With-Code"><a href="#右键菜单添加Open-With-Code" class="headerlink" title="右键菜单添加Open With Code"></a>右键菜单添加Open With Code</h1><p>写一个.reg文件然后双击，其中VSCode的路径换成自己的。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\VSCode]</span><br><span class="line"> </span><br><span class="line">@=&quot;Open with Code&quot;</span><br><span class="line"> </span><br><span class="line">&quot;Icon&quot;=&quot;D:\\Program Files\\Visual Studio Code\\Code.exe&quot;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\*\shell\VSCode\command]</span><br><span class="line"> </span><br><span class="line">@=&quot;\&quot;D:\\Program Files\\Visual Studio Code\\Code.exe\&quot; \&quot;%1\&quot;&quot;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\shell\VSCode]</span><br><span class="line"> </span><br><span class="line">@=&quot;Open with Code&quot;</span><br><span class="line"> </span><br><span class="line">&quot;Icon&quot;=&quot;D:\\Program Files\\Visual Studio Code\\Code.exe&quot;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\shell\VSCode\command]</span><br><span class="line"> </span><br><span class="line">@=&quot;\&quot;D:\\Program Files\\Visual Studio Code\\Code.exe&quot; \&quot;%V\&quot;&quot;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode]</span><br><span class="line"> </span><br><span class="line">@=&quot;Open with Code&quot;</span><br><span class="line"> </span><br><span class="line">&quot;Icon&quot;=&quot;D:\\Program Files\\Visual Studio Code\\Code.exe&quot;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\VSCode\command]</span><br><span class="line"> </span><br><span class="line">@=&quot;\&quot;D:\\Program Files\\Visual Studio Code\\Code.exe&quot; \&quot;%V\&quot;&quot;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>QuickNote</tag>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数据结构课设-财务报销管理系统</title>
     <url>/2022/08/01/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E8%AE%BE/</url>
     <content><![CDATA[<h1 id="财务报销管理系统"><a href="#财务报销管理系统" class="headerlink" title="财务报销管理系统"></a>财务报销管理系统</h1><p>公司日常费用的财务报销管理，对于每个公司而言，是非常重要的管理节点。如何设计合理的数据结构、数据处理流程提升财务报销效率，是一个非常值得探索的问题。针对日常报销需求，开发一个简易的财务报销管理系统。</p>
