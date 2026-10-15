@@ -19,6 +19,7 @@ Then open `http://127.0.0.1:4173/`.
 - `projects/safety/`: self-contained Attack Strategy Taxonomy explorer
 - `projects/vlm-understanding/`: VLM research explorer
 - `projects/global-workspace/`: global workspace HTML reading slides
+- `projects/visual-semantic-entropy/`: English animated VSE paper-sharing slides
 - `.agents/`: repository context and task records
 
 ## Publication boundary
