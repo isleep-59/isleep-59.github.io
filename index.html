@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8"><link rel="icon" href="data:,">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#e8e4dc">
@@ -58,7 +58,7 @@
         <h1 id="page-title">Personal Workspace</h1>
       </div>
       <div class="index-meta" aria-label="站点信息">
-        <div><span>Projects</span><strong>02</strong></div>
+        <div><span>Projects</span><strong>03</strong></div>
         <div><span>Format</span><strong>Static</strong></div>
         <div><span>Updated</span><strong>2026</strong></div>
       </div>
@@ -74,10 +74,18 @@
           <button type="button" class="filter-button is-active" data-filter="all" aria-pressed="true">全部</button>
           <button type="button" class="filter-button" data-filter="safety" aria-pressed="false">Safety</button>
           <button type="button" class="filter-button" data-filter="vlm" aria-pressed="false">VLM</button>
+          <button type="button" class="filter-button" data-filter="interpretability" aria-pressed="false">Interpretability</button>
         </div>
       </div>
 
       <div class="project-grid" aria-live="polite">
+        <article class="project-card" data-project-card data-category="interpretability" tabindex="0">
+          <div class="card-accent" aria-hidden="true"></div>
+          <div class="card-topline"><span class="project-number">03</span><span class="status"><span class="status-dot" aria-hidden="true"></span>中文视觉导读</span></div>
+          <div class="card-body"><p class="project-type">Interpretability · paper reading</p><h3>语言模型的全局工作空间</h3><p>24 页图解 Jacobian lens、内部推理的因果证据与反事实反思训练。</p></div>
+          <div class="tag-list" aria-label="项目标签"><span>Jacobian lens</span><span>Original figures</span><span>HTML slides</span></div>
+          <a class="project-link" href="./projects/global-workspace/"><span>打开 Slides</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
+        </article>
         <article class="project-card" data-project-card data-category="safety" tabindex="0">
           <div class="card-accent" aria-hidden="true"></div>
           <div class="card-topline">

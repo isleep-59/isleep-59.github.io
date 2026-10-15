@@ -17,10 +17,12 @@ Then open `http://127.0.0.1:4173/`.
 - `index.html`: personal project index
 - `assets/`: homepage styles, interactions, and social preview
 - `projects/safety/`: self-contained Attack Strategy Taxonomy explorer
+- `projects/vlm-understanding/`: VLM research explorer
+- `projects/global-workspace/`: global workspace HTML reading slides
 - `.agents/`: repository context and task records
 
 ## Publication boundary
 
-This working tree is prepared for local review. It has not been pushed or deployed. Do not add a `CNAME` unless a custom domain is explicitly requested later.
+The site is published through GitHub Pages. New changes require local validation and publication authorization. Do not add a `CNAME` unless a custom domain is explicitly requested later.
 
-The pre-redesign Hexo site is preserved by local branch `archive/legacy-blog-2022`. Push that branch only after explicit approval.
+The pre-redesign Hexo site is preserved by local and remote branch `archive/legacy-blog-2022`. Keep that archive unchanged.

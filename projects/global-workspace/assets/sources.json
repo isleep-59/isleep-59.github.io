@@ -1,0 +1,163 @@
+[
+  {
+    "file": "fig-workspace-functional-properties.png",
+    "figure": 1,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-workspace-functional-properties",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-lens-intro.png",
+    "figure": 3,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-lens-intro",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-jlens-schematic.png",
+    "figure": 4,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-jlens-schematic",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-fig-verbal-report.png",
+    "figure": 6,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-fig-verbal-report",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-modulation-readout.png",
+    "figure": 9,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-modulation-readout",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-latent-patching.png",
+    "figure": 13,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-latent-patching",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-fig-probe-swap.png",
+    "figure": 16,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-fig-probe-swap",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-fig-flex-gen-example.png",
+    "figure": 18,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-fig-flex-gen-example",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-fig-flex-gen-summary.png",
+    "figure": 19,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-fig-flex-gen-summary",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-flex-auto-panels.png",
+    "figure": 20,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-flex-auto-panels",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-ablation-table.png",
+    "figure": 22,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-ablation-table",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-ablation-bars.png",
+    "figure": 24,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-ablation-bars",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-jlens-cka.png",
+    "figure": 27,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-jlens-cka",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-capacity-fve-occupancy.png",
+    "figure": 30,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-capacity-fve-occupancy",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-mlp-gain.png",
+    "figure": 32,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-mlp-gain",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-attn-broadcast-reselect.png",
+    "figure": 33,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-attn-broadcast-reselect",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-blackmail-clamp.png",
+    "figure": 36,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-blackmail-clamp",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-reward-hack-quant.png",
+    "figure": 39,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-reward-hack-quant",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-fig-identity-tylenol.png",
+    "figure": 42,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-fig-identity-tylenol",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-reflection-schematic.png",
+    "figure": 47,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-reflection-schematic",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-fig-reflection-fabrication.png",
+    "figure": 49,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-fig-reflection-fabrication",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-fig-reflection-deception.png",
+    "figure": 50,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-fig-reflection-deception",
+    "capture": "Original article browser rendering, 1440px viewport, deviceScaleFactor 2",
+    "date": "2026-10-15"
+  },
+  {
+    "file": "fig-flex-auto-summary.png",
+    "figure": 20,
+    "url": "https://transformer-circuits.pub/2026/workspace/index.html#fig-flex-auto-panels",
+    "capture": "Original quantitative panels only (.flex-auto-3panel); full figure retained in fig-flex-auto-panels.png",
+    "date": "2026-10-15"
+  }
+]
